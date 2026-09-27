@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: ./backend
+    container_name: superkart-backend
+    ports:
+      - "7860:7860"
+
+  frontend:
+    build: ./frontend
+    container_name: superkart-frontend
+    environment:
+      - API_ROOT=http://backend:7860
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
